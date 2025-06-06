@@ -23,14 +23,22 @@
 
     <!-- Konten Utama -->
     <div class="container mx-auto p-6">
+        <!-- Tombol Tambah -->
         <a href="<?= base_url('/barang/create') ?>" class="mb-4 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 shadow">
             <i class="fas fa-plus mr-1"></i> Tambah Barang
         </a>
 
-        <!-- Flash Message -->
+        <!-- Flash Message Success -->
         <?php if (session()->getFlashdata('success')) : ?>
             <div class="bg-green-100 text-green-700 p-3 rounded mb-4">
                 <?= session()->getFlashdata('success') ?>
+            </div>
+        <?php endif; ?>
+
+        <!-- Flash Message Error -->
+        <?php if (session()->getFlashdata('error')): ?>
+            <div class="bg-red-100 text-red-700 p-3 rounded mb-4">
+                <?= session()->getFlashdata('error') ?>
             </div>
         <?php endif; ?>
 
@@ -57,8 +65,12 @@
                                 <td class="py-2 px-4 border"><?= esc($b['satuan']) ?></td>
                                 <td class="py-2 px-4 border"><?= esc($b['stok']) ?></td>
                                 <td class="py-2 px-4 border text-center space-x-2">
-                                    <a href="<?= base_url('/barang/' . $b['id']) ?>" class="text-blue-600 hover:underline"><i class="fas fa-eye"></i> Lihat</a>
-                                    <a href="<?= base_url('/barang/edit/' . $b['id']) ?>" class="text-green-600 hover:underline"><i class="fas fa-edit"></i> Edit</a>
+                                    <a href="<?= base_url('/barang/' . $b['id']) ?>" class="text-blue-600 hover:underline">
+                                        <i class="fas fa-eye"></i> Lihat
+                                    </a>
+                                    <a href="<?= base_url('/barang/edit/' . $b['id']) ?>" class="text-green-600 hover:underline">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
                                     <a href="<?= base_url('/barang/delete/' . $b['id']) ?>" class="text-red-600 hover:underline" onclick="return confirm('Yakin ingin menghapus data ini?')">
                                         <i class="fas fa-trash"></i> Hapus
                                     </a>

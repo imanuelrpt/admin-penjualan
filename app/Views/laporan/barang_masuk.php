@@ -21,7 +21,14 @@
 
     <!-- Konten -->
     <div class="max-w-5xl mx-auto bg-white p-6 mt-6 rounded shadow">
-        <h2 class="text-2xl font-bold text-gray-700 mb-4">Laporan Barang Masuk</h2>
+
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-bold text-gray-700">Laporan Barang Masuk</h2>
+            <a href="<?= base_url('/barangmasuk/cetak') ?>" target="_blank" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 shadow inline-flex items-center space-x-2">
+                <i class="fas fa-file-pdf"></i>
+                <span>Cetak PDF</span>
+            </a>
+        </div>
 
         <form action="<?= base_url('/laporan/barangmasuk') ?>" method="post" class="mb-6 flex flex-wrap gap-4">
             <div>

@@ -82,7 +82,7 @@
                         <select name="barang[]" onchange="autoHarga(this)" required class="w-full border p-2 rounded">
                             <option value="">-- Pilih --</option>
                             <?php foreach ($barang as $b): ?>
-                                <option value="<?= $b['id'] ?>" data-harga="<?= $b['harga'] ?>">
+                                <option value="<?= $b['id'] ?>">
                                     <?= $b['kode_barang'] ?> - <?= $b['nama_barang'] ?>
                                 </option>
                             <?php endforeach ?>

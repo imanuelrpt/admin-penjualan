@@ -38,7 +38,7 @@
             </div>
         <?php endif; ?>
 
-        <!-- Tabel -->
+        <!-- Tabel Transaksi -->
         <div class="overflow-x-auto bg-white rounded shadow border">
             <table class="min-w-full divide-y divide-gray-200 text-sm">
                 <thead class="bg-blue-50 text-left text-gray-700 font-semibold">
@@ -48,6 +48,7 @@
                         <th class="px-6 py-3">Tanggal</th>
                         <th class="px-6 py-3">Konsumen</th>
                         <th class="px-6 py-3 text-right">Total</th>
+                        <th class="px-6 py-3 text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100 text-gray-800">
@@ -58,17 +59,31 @@
                                 <td class="px-6 py-3"><?= esc($p['no_faktur']) ?></td>
                                 <td class="px-6 py-3"><?= date('d-m-Y', strtotime($p['tgl_transaksi'])) ?></td>
                                 <td class="px-6 py-3"><?= esc($p['nama']) ?></td>
-                                <td class="px-6 py-3 text-right font-medium text-blue-600">Rp<?= number_format($p['total'], 0, ',', '.') ?></td>
+                                <td class="px-6 py-3 text-right font-medium text-blue-600">
+                                    Rp<?= number_format($p['total'], 0, ',', '.') ?>
+                                </td>
+                                <td class="px-6 py-3 text-center space-x-2">
+                                    <a href="<?= base_url('/penjualan/' . $p['id']) ?>" class="text-blue-600 hover:underline text-sm">
+                                        <i class="fas fa-eye"></i> Lihat
+                                    </a>
+                                    <a href="<?= base_url('/penjualan/edit/' . $p['id']) ?>" class="text-green-600 hover:underline text-sm">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                    <a href="<?= base_url('/penjualan/delete/' . $p['id']) ?>" onclick="return confirm('Yakin ingin menghapus transaksi ini?')" class="text-red-600 hover:underline text-sm">
+                                        <i class="fas fa-trash"></i> Hapus
+                                    </a>
+                                </td>
                             </tr>
                         <?php endforeach ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="5" class="text-center text-gray-500 py-6">Belum ada transaksi penjualan.</td>
+                            <td colspan="6" class="text-center text-gray-500 py-6">Belum ada transaksi penjualan.</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
             </table>
         </div>
+
     </main>
 
 </body>

@@ -60,9 +60,18 @@ class Barang extends BaseController
 
     public function delete($id)
     {
+        $dipakai = (new \App\Models\BarangMasukModel())
+            ->where('id_barang', $id)
+            ->countAllResults();
+
+        if ($dipakai > 0) {
+            return redirect()->to('/barang')->with('error', 'Barang tidak dapat dihapus karena masih digunakan di transaksi barang masuk.');
+        }
+
         $this->barangModel->delete($id);
-        return redirect()->to('/barang')->with('success', 'Data barang berhasil dihapus.');
+        return redirect()->to('/barang')->with('success', 'Barang berhasil dihapus.');
     }
+
 
     public function detail($id)
     {

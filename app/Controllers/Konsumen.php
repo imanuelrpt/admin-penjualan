@@ -72,8 +72,17 @@ public function update($id)
 
 public function delete($id)
 {
+    $penjualan = (new \App\Models\PenjualanModel())
+        ->where('id_konsumen', $id)
+        ->countAllResults();
+
+    if ($penjualan > 0) {
+        return redirect()->to('/konsumen')->with('error', 'Gagal hapus. Konsumen masih digunakan dalam transaksi penjualan.');
+    }
+
     $this->konsumenModel->delete($id);
     return redirect()->to('/konsumen')->with('success', 'Data konsumen berhasil dihapus.');
 }
+
 
 }
